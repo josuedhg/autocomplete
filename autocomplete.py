@@ -42,10 +42,11 @@ class Autocomplete:
         return suggestions
 
 if __name__ == "__main__":
-    words = ["hola", "hey", "Salud", "Saludo"]
     autocomplete = Autocomplete()
-    for word in words:
-        autocomplete.insert(word)
-    print(autocomplete.autocomplete("h"))
-    print(autocomplete.autocomplete("Salud"))
+    with open("words.txt") as f:
+        for word in f.readlines():
+            autocomplete.insert(word.replace("\n", ""))
+    print(autocomplete.autocomplete("pro"))
+    print(autocomplete.autocomplete("hell"))
     print(autocomplete.autocomplete("non"))
+    print(autocomplete.autocomplete("notfounditem"))
