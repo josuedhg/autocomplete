@@ -1,15 +1,23 @@
 #!/usr/bin/python
+"""
+Autocomplete module
+"""
 
 class Trie:
+    """
+    Trie structure
+    """
     def __init__(self):
         self.children = {}
         self.end = False
 
 class Autocomplete:
+    """ Class Autocomplete to manage autocompletion process """
     def __init__(self):
         self.root = Trie()
 
     def insert(self, key: str):
+        """ method to instert word in trie tree """
         trie_node = self.root
         for character in key:
             if character not in trie_node.children.keys():
@@ -18,6 +26,7 @@ class Autocomplete:
         trie_node.end = True
 
     def get_last_node(self, key: str) -> Trie:
+        """ method to get the last trie node given a word """
         trie_node = self.root
         for character in key:
             if character not in trie_node.children.keys():
@@ -26,6 +35,7 @@ class Autocomplete:
         return trie_node
 
     def autocomplete(self, to_complete: str) -> list:
+        """ method to autocomplete a given word """
         trie_node = self.get_last_node(to_complete)
         if trie_node is None:
             return []
